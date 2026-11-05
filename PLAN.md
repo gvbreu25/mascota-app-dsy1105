@@ -15,6 +15,7 @@ Responsable: Gabriel Alejandro Abreu Quintero. Desarrollo individual actual; con
 - [x] Tema oscuro conservado después de reiniciar, mediante DataStore.
 - [x] Formulario en dos paneles en pantalla amplia de 1600 × 1200, densidad 240.
 - [x] Guía de estudio, checklist AVA y ejercicios de modificación preparados.
+- [x] Repositorio público publicado: https://github.com/gvbreu25/mascota-app-dsy1105
 
 ## En comprobación
 
@@ -24,8 +25,7 @@ Responsable: Gabriel Alejandro Abreu Quintero. Desarrollo individual actual; con
 ## Pendiente antes de entregar
 
 - [ ] Consultar al docente situación individual y número de equipo.
-- [ ] Iniciar sesión en GitHub y publicar repositorio público.
-- [ ] Completar en README número de equipo y enlaces reales.
+- [ ] Confirmar y completar en README número de equipo/sección.
 - [ ] Generar ZIP final que coincida con el commit entregado.
 - [ ] Entregar código en AVA grupal y activar AVA individual en plazo.
 - [ ] Conservar comprobantes; congelar repositorio hasta la evaluación.

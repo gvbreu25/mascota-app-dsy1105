@@ -2,6 +2,8 @@
 
 Aplicación Android para organizar las fichas y fotografías de tus mascotas y consultar sus datos sin conexión.
 
+**Autor:** Gabriel Alejandro Abreu Quintero.
+
 ## Funcionalidades
 
 - Registrar mascotas con nombre, especie, edad, responsable, teléfono y estado de vacunación.

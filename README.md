@@ -1,56 +1,99 @@
-# Mis mascotas — DSY1105 EA2
+# Mis mascotas
 
-Aplicación Android local para registrar, consultar, editar y eliminar fichas de mascotas y asociar fotografías. Contexto propuesto: mantener datos del responsable y mascota disponibles sin conexión.
+Aplicación Android para organizar las fichas y fotografías de tus mascotas y consultar sus datos sin conexión.
 
-## Identificación: completar ANTES de entregar
+## Funcionalidades
 
-- Estudiante: **Gabriel Alejandro Abreu Quintero**.
-- Equipo/sección: por confirmar con docente; actualmente se trabaja de forma individual.
-- Modalidad actual: desarrollo individual. La pauta solicita parejas; no se declara colaboración que no ocurrió. Confirmar la situación con el docente.
-- Repositorio público: https://github.com/gvbreu25/mascota-app-dsy1105
-- Planificación local: `PLAN.md`. Trello omitido a petición del estudiante; no se acredita planificación en plataforma compartida.
+- Registrar mascotas con nombre, especie, edad, responsable, teléfono y estado de vacunación.
+- Consultar el listado y el detalle de cada ficha.
+- Editar registros y eliminarlos con confirmación.
+- Validar los campos con mensajes e íconos de error.
+- Tomar una fotografía con la cámara o seleccionar una imagen de la galería.
+- Conservar fichas y fotografías al cerrar la aplicación.
+- Cambiar entre tema claro y oscuro, conservando la preferencia.
+- Adaptar el listado y el formulario a pantallas compactas y amplias.
 
-## Funcionalidades en el código
+## Tecnologías
 
-- Listado, registro y detalle con Navigation Compose; edición y borrado con confirmación.
-- Formulario con validación por campo en `PetValidator`, errores reactivos, íconos y bloqueo de guardado mientras procesa.
-- MVVM, Repository, StateFlow y observación asociada al ciclo de vida.
-- SQLite mediante Room: insertar, consultar, actualizar y eliminar.
-- Preferencia de tema claro/oscuro guardada con DataStore Preferences desde el ícono de la barra superior.
-- Cámara delegada con `TakePicture`/`FileProvider`, selector de fotos con `PickVisualMedia` y copia privada de las imágenes seleccionadas.
-- Errores con `AnimatedVisibility`, indicador de proceso y transiciones de Navigation Compose.
-- Material 3, tema oscuro y distribución por Window Size Classes: una/dos columnas y formulario con uno/dos paneles.
+Kotlin · Jetpack Compose · Material 3 · Navigation Compose · ViewModel · StateFlow · Corrutinas · Room · DataStore Preferences · Coil.
 
-Verificación realizada: APK compilado, seis pruebas automáticas aprobadas, revisión Android con cero errores y ejecución en emulador Android 15/API 35. Se probaron formulario vacío, registro, edición de foto, cámara virtual, galería, reinicio y tema persistente. Se revisó el formulario en ancho compacto y amplio. Consulta `VALIDACION.md`. No se probó en teléfono físico.
+## Requisitos
+
+- Android Studio compatible con Android Gradle Plugin 8.9.1.
+- JDK 17, Android SDK 35 y Build-Tools 35.0.0.
+- Dispositivo o emulador con Android 8.0 (API 26) o superior.
+- Internet para descargar dependencias durante la primera compilación.
 
 ## Ejecutar
 
-1. Android Studio con soporte para AGP 8.9.1, JDK 17 y Android SDK 35.
-2. Abrir esta carpeta raíz (`settings.gradle.kts`). Sincronizar Gradle.
-3. Android Studio configura `local.properties` con el SDK de ese computador. No compartir este archivo.
-4. Seleccionar teléfono o emulador Android 8.0/API 26 o superior y ejecutar `app`.
-5. Para compilar desde terminal con Java y SDK configurados: `gradlew.bat assembleDebug` (Windows) o `./gradlew assembleDebug` (macOS/Linux).
-6. Pruebas: `gradlew.bat testDebugUnitTest`. Revisión Android: `gradlew.bat lintDebug`.
+1. Clona este repositorio o descarga su código fuente.
+2. Abre en Android Studio la carpeta que contiene `settings.gradle.kts`.
+3. Selecciona JDK 17 como Gradle JDK y sincroniza el proyecto.
+4. Elige un dispositivo o emulador y ejecuta el módulo `app`.
 
-Versiones fijadas: Gradle 8.11.1, AGP 8.9.1, Kotlin/Compose compiler 2.1.20, KSP 2.1.20-1.0.32, Room 2.7.1, Compose BOM 2025.04.01, Navigation 2.8.9.
+Android Studio configura `local.properties` con la ruta del SDK de cada equipo. Este archivo no se incluye en el repositorio.
+
+### Compilación y pruebas
+
+En Windows:
+
+```powershell
+.\gradlew.bat assembleDebug
+.\gradlew.bat testDebugUnitTest
+.\gradlew.bat lintDebug
+```
+
+En macOS o Linux, utiliza `./gradlew` con las mismas tareas. El APK se genera en `app/build/outputs/apk/debug/app-debug.apk`.
 
 ## Arquitectura
 
-`ui/screens` → `viewmodel` → `repository` → `data` (Room) → SQLite.
-`model` define la entidad, el estado del formulario y las validaciones. `navigation` coordina rutas. La Activity crea un ViewModel compartido; `Application` proporciona repositorio/base de datos. Se separan responsabilidades en paquetes dentro de un módulo `app`; no se afirma tener varios módulos Gradle.
+La aplicación utiliza MVVM y separa sus responsabilidades dentro del módulo `app`:
 
-## Reglas de negocio del proyecto
+| Paquete | Responsabilidad |
+|---|---|
+| `model` | Entidad de mascota, estado del formulario y validaciones |
+| `data` | Base de datos Room y DAO |
+| `repository` | Acceso a fichas, fotografías y preferencias |
+| `viewmodel` | Eventos, lógica de presentación y StateFlow |
+| `navigation` | Rutas y navegación |
+| `ui/screens` | Listado, formulario y detalle |
+| `ui/components` | Componentes visuales reutilizables |
+| `ui/theme` | Tema Material 3 |
 
-Nombre 2–30 caracteres, especie de lista, edad entera 0–30, responsable 3–60, teléfono de nueve dígitos. Foto opcional. No hay autenticación ni conexión a servidor. El indicador de vacunas es informativo.
+La interfaz envía acciones al ViewModel, que valida los datos y utiliza el repositorio para consultar o modificar Room. Los cambios se exponen mediante StateFlow y actualizan la interfaz de forma reactiva. DataStore guarda la preferencia de tema.
 
-## Recursos nativos y permisos
+## Validaciones
 
-La cámara se ejecuta mediante una aplicación externa y una URI `content://` creada con FileProvider. No se declara `CAMERA` porque esta app no abre el hardware directamente. FileProvider no está exportado y comparte solo `files/photos/` mediante permisos temporales del contrato. El selector de fotos concede acceso a la imagen seleccionada, sin permisos amplios de galería. Se copia a almacenamiento privado en una corrutina de IO; se verifican tamaño y formato. Cancelar no sustituye la imagen actual.
+| Campo | Regla |
+|---|---|
+| Nombre de mascota | Entre 2 y 30 caracteres |
+| Especie | Perro, Gato u Otro |
+| Edad | Entero entre 0 y 30 años |
+| Responsable | Entre 3 y 60 caracteres |
+| Teléfono | Nueve dígitos, sin espacios ni prefijo internacional |
+| Fotografía | Opcional; importación de imágenes de hasta 20 MB |
 
-## Datos y límites
+Las reglas se centralizan en `PetValidator`. Los nombres se evalúan después de quitar espacios exteriores. El estado de vacunación es informativo.
 
-Fichas e imágenes permanecen en el dispositivo. Desinstalar o borrar datos las elimina. No hay sincronización, exportación ni migración desde esquemas anteriores. Las fotos reemplazadas o de borradores abandonados pueden permanecer en el almacenamiento privado; no hay limpieza automática de archivos huérfanos en esta versión. No se suben fotos personales ni bases de datos al repositorio.
+## Cámara, galería y persistencia
 
-## Entrega y congelamiento
+La captura se delega a la aplicación de cámara mediante `TakePicture` y una URI de `FileProvider`. `PickVisualMedia` permite seleccionar una fotografía sin dar acceso a toda la galería. No se solicita acceso directo al hardware de cámara ni permisos amplios de fotos.
 
-Completar equipo y enlace de GitHub, ejecutar pruebas en el equipo de defensa, subir código fuente a GitHub público y AVA grupal y activar AVA individual dentro de plazo. **Desde la entrega hasta la evaluación no modificar el repositorio, ni siquiera README, ramas o archivos mínimos.** Practicar posteriormente en una copia local separada sin remoto. Las modificaciones en vivo se realizan cuando las solicite el docente durante la defensa. No usar IA ni recursos de apoyo durante la defensa.
+Las imágenes se guardan en el almacenamiento privado y las fichas en SQLite mediante Room. La app funciona sin servidor ni cuentas de usuario.
+
+## Verificación
+
+La compilación y las seis pruebas automáticas finalizaron correctamente. Las pruebas cubren validaciones y operaciones de creación, consulta, actualización, reapertura de la base y eliminación. Android Lint informó cero errores y catorce advertencias.
+
+Se verificaron registro, errores de formulario, cámara virtual, galería, recuperación tras reiniciar y tema persistente en un emulador Android 15. También se revisó el formulario en pantalla compacta y amplia. La app aún no se ha probado en un dispositivo físico.
+
+## Límites actuales
+
+- No hay sincronización, autenticación ni respaldo externo.
+- Desinstalar la app o borrar sus datos elimina fichas e imágenes.
+- Las fotos reemplazadas y los borradores abandonados pueden dejar archivos privados sin uso; aún no hay limpieza automática.
+- La base utiliza la versión inicial del esquema y no incluye migraciones desde versiones anteriores.
+
+## Versiones principales
+
+Gradle 8.11.1 · Android Gradle Plugin 8.9.1 · Kotlin y Compose Compiler 2.1.20 · KSP 2.1.20-1.0.32 · Compose BOM 2025.04.01 · Room 2.7.1 · DataStore 1.1.4 · Navigation Compose 2.8.9.

@@ -24,14 +24,14 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         val app = application as MascotaApplication
         val factory = viewModelFactory { initializer {
-            PetViewModel(app.repository, PhotoStorage(app), createSavedStateHandle(), SettingsRepository(app))
+            cl.duoc.mascotas.viewmodel.ChlorineViewModel(app, app.chlorineRepository)
         } }
         setContent {
-            val vm: PetViewModel = viewModel(factory = factory)
-            val dark by vm.darkTheme.collectAsStateWithLifecycle()
+            val vm: cl.duoc.mascotas.viewmodel.ChlorineViewModel = viewModel(factory = factory)
+            val dark by SettingsRepository(app).darkTheme.collectAsStateWithLifecycle(false)
             MascotaTheme(dark) {
                 val window = calculateWindowSizeClass(this)
-                AppNavigation(vm, window.widthSizeClass != WindowWidthSizeClass.Compact)
+                cl.duoc.mascotas.ui.screens.ChlorineScreens(vm)
             }
         }
     }

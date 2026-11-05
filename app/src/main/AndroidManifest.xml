@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-feature android:name="android.hardware.camera.any" android:required="false" />
     <!-- Cámara delegada y selector de fotos: no necesitamos acceso amplio al dispositivo. -->
-    <application android:name=".MascotaApplication" android:label="Mis mascotas"
+    <application android:name=".MascotaApplication" android:label="Cloro en línea"
         android:icon="@drawable/ic_paw" android:allowBackup="false" android:theme="@style/Theme.Mascotas"
         android:supportsRtl="true">
         <activity android:name=".MainActivity" android:exported="true">

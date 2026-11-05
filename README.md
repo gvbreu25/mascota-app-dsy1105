@@ -5,10 +5,10 @@ Aplicación Android local para registrar, consultar, editar y eliminar fichas de
 ## Identificación: completar ANTES de entregar
 
 - Estudiante: **Gabriel Alejandro Abreu Quintero**.
-- Equipo/sección: **PENDIENTE — confirmar con docente**.
+- Equipo/sección: por confirmar con docente; actualmente se trabaja de forma individual.
 - Modalidad actual: desarrollo individual. La pauta solicita parejas; no se declara colaboración que no ocurrió. Confirmar la situación con el docente.
-- Repositorio público: **PENDIENTE**.
-- Tablero de planificación: **PENDIENTE**.
+- Repositorio público: https://github.com/gvbreu25/mascota-app-dsy1105
+- Planificación local: `PLAN.md`. Trello omitido a petición del estudiante; no se acredita planificación en plataforma compartida.
 
 ## Funcionalidades en el código
 
@@ -21,7 +21,7 @@ Aplicación Android local para registrar, consultar, editar y eliminar fichas de
 - Errores con `AnimatedVisibility`, indicador de proceso y transiciones de Navigation Compose.
 - Material 3, tema oscuro y distribución por Window Size Classes: una/dos columnas y formulario con uno/dos paneles.
 
-Estas funciones deben contrastarse con pruebas reales. El resumen de validación de la entrega acompaña el proyecto; el código por sí solo no acredita que se probó cámara o galería en un teléfono.
+Verificación realizada: APK compilado, seis pruebas automáticas aprobadas, revisión Android con cero errores y ejecución en emulador Android 15/API 35. Se probaron formulario vacío, registro, edición de foto, cámara virtual, galería, reinicio y tema persistente. Se revisó el formulario en ancho compacto y amplio. Consulta `VALIDACION.md`. No se probó en teléfono físico.
 
 ## Ejecutar
 
@@ -53,4 +53,4 @@ Fichas e imágenes permanecen en el dispositivo. Desinstalar o borrar datos las 
 
 ## Entrega y congelamiento
 
-Completar identidad y enlaces, ejecutar pruebas en el equipo de defensa, subir código fuente a GitHub público y AVA grupal y activar AVA individual dentro de plazo. **Desde la entrega hasta la evaluación no modificar el repositorio, ni siquiera README, ramas o archivos mínimos.** Practicar posteriormente en una copia local separada sin remoto. Las modificaciones en vivo se realizan cuando las solicite el docente durante la defensa. No usar IA ni recursos de apoyo durante la defensa.
+Completar equipo y enlace de GitHub, ejecutar pruebas en el equipo de defensa, subir código fuente a GitHub público y AVA grupal y activar AVA individual dentro de plazo. **Desde la entrega hasta la evaluación no modificar el repositorio, ni siquiera README, ramas o archivos mínimos.** Practicar posteriormente en una copia local separada sin remoto. Las modificaciones en vivo se realizan cuando las solicite el docente durante la defensa. No usar IA ni recursos de apoyo durante la defensa.

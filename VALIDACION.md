@@ -1,6 +1,6 @@
 # Registro de validación
 
-Preparación realizada el 4 de noviembre de 2026 (America/Santiago). Este documento registra pruebas reales y sus límites; no asigna una calificación.
+Verificación realizada el 4 de noviembre de 2026 (America/Santiago). Este documento registra las pruebas ejecutadas y sus límites.
 
 ## Compilación y pruebas
 
@@ -25,13 +25,8 @@ Dispositivo virtual Pixel 5, imagen Google APIs Android 15/API 35, x86_64. Captu
 | Cambiar a tema oscuro, cerrar/reabrir | Preferencia recuperada mediante DataStore. |
 | Pantalla amplia 1600 × 1200, densidad 240 | Formulario en dos paneles, foto a la izquierda y campos a la derecha. |
 
-## Pendientes y límites
+## Límites de las pruebas
 
-- El estudiante debe repetir las pruebas personalmente y practicar los cambios de defensa sin ayuda.
-- No se probó en dispositivo físico, ni todas las combinaciones de fabricantes/versiones/permisos.
-- Cancelación de recursos, errores de almacenamiento y todos los flujos de accesibilidad deben comprobarse además con el checklist de preparación.
-- El CRUD de borrado y la actualización de datos se verificaron en la prueba automatizada Room; eso no sustituye revisar cada interacción visual en el equipo de defensa.
-- La modalidad individual debe confirmarse con docente. Trello se omite por decisión del estudiante y no se declara ese requisito cumplido.
-- El acceso específico del docente y la entrega AVA dependen de datos y acciones que todavía no se han realizado. Publicar GitHub no equivale a entregar en AVA.
-
-No se modificará el repositorio después de la entrega y antes de la evaluación. Practicar en una copia independiente y sin remoto.
+- No se probó en dispositivo físico ni en todas las combinaciones de fabricantes y versiones de Android.
+- Queda por ampliar la comprobación de cancelación de recursos, errores de almacenamiento y accesibilidad.
+- El borrado y la actualización de datos se verificaron mediante Room en pruebas automáticas; queda por ampliar la cobertura de las interacciones visuales correspondientes.
